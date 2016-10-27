@@ -1,0 +1,17 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 *ngIf="albumName === ''" class="panel-title">All photos</h3>
+    <h3 *ngIf="albumName !== ''" class="panel-title">Album: {{albumName}} (#{{albumId}})</h3>
+  </div>
+  <div class="panel-body">
+    <div *ngFor="let image of imagesToShow" class="col-xs-12 col-sm-6 col-md-4 thumbplace">
+      <div class="thumbnail" [class.thumbnail__nobutton]="albumName !== ''">
+        <a [routerLink]="['/image/' + image.id]"><img src="{{image.thumbnailUrl}}" alt="{{image.title}}"></a>
+        <div class="caption">
+          <p>{{image.title}}</p>
+          <a  *ngIf="albumName === ''" [routerLink]="['/album/' + image.albumId]" class="btn btn-default" role="button">See Album (#{{image.albumId}})</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
